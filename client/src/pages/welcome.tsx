@@ -5,9 +5,6 @@ import { useWelcomeAudio } from "../hooks/useWelcomeAudio";
 import { MediaPreloader } from "../components/media-preloader";
 import { useState, useEffect, useCallback } from "react";
 import logoImage from "@assets/Untitled_design_(20)_1765720426678.png";
-import barrelsIcon from "@assets/2_1765721393723.png";
-import beerMugIcon from "@assets/3_1765721393723.png";
-import liqueurIcon from "@assets/4_1765721393724.png";
 
 export default function Welcome() {
   const [, setLocation] = useLocation();
@@ -176,38 +173,82 @@ export default function Welcome() {
             </div>
           </div>
 
-          {/* Decorative Icons */}
-          <div 
-            className="flex items-end justify-center"
-            style={{ gap: `${24 * scaleFactor}px`, marginTop: `${16 * scaleFactor}px` }}
+          {/* Address Section */}
+          <div className="text-center">
+            <div
+              className="border-2 rounded-full inline-block"
+              style={{
+                padding: `${4 * scaleFactor}px ${16 * scaleFactor}px`,
+                marginBottom: `${12 * scaleFactor}px`,
+                borderColor: '#B8986A',
+              }}
+            >
+              <span
+                className="font-semibold"
+                style={{ fontSize: `${12 * scaleFactor}px`, color: '#dcd4c8' }}
+              >
+                ADDRESS
+              </span>
+            </div>
+            <div
+              className="leading-tight"
+              style={{ fontSize: `${11 * scaleFactor}px`, color: '#E8DFD1', maxWidth: `${260 * scaleFactor}px` }}
+            >
+              <p>Shop No: 3, Madanlal Dhingra Rd,</p>
+              <p>beside Satranj Wafers, Bhakti Mandir,</p>
+              <p>Panch Pakhdi, Thane West</p>
+            </div>
+          </div>
+
+          {/* Contact Section */}
+          <div className="text-center">
+            <div
+              className="border-2 rounded-full inline-block"
+              style={{
+                padding: `${4 * scaleFactor}px ${16 * scaleFactor}px`,
+                marginBottom: `${12 * scaleFactor}px`,
+                borderColor: '#B8986A',
+              }}
+            >
+              <span
+                className="font-semibold"
+                style={{ fontSize: `${12 * scaleFactor}px`, color: '#dcd4c8' }}
+              >
+                CONTACT
+              </span>
+            </div>
+            <div
+              style={{ fontSize: `${11 * scaleFactor}px`, color: '#E8DFD1' }}
+            >
+              <p>+91 1234567890</p>
+              <p>info@barrelborn.in</p>
+            </div>
+          </div>
+
+          {/* Website URL Section */}
+          <div className="text-center" style={{ marginTop: `${8 * scaleFactor}px` }}>
+            <p
+              className="cursor-pointer no-underline"
+              style={{ textDecoration: 'none', color: '#B8986A', fontSize: `${11 * scaleFactor}px` }}
+              onClick={() => window.open("https://www.barrelborn.in", "_blank")}
+            >
+              www.barrelborn.in
+            </p>
+          </div>
+
+          {/* Developer Credit */}
+          <div
+            className="text-center"
+            style={{ fontSize: `${10 * scaleFactor}px`, color: '#E8DFD1' }}
           >
-            <img
-              src={liqueurIcon}
-              alt="Liqueur Bottle"
-              style={{
-                width: `${70 * scaleFactor}px`,
-                height: 'auto',
-                opacity: 0.9,
-              }}
-            />
-            <img
-              src={beerMugIcon}
-              alt="Beer Mug"
-              style={{
-                width: `${90 * scaleFactor}px`,
-                height: 'auto',
-                opacity: 0.9,
-              }}
-            />
-            <img
-              src={barrelsIcon}
-              alt="Barrels"
-              style={{
-                width: `${80 * scaleFactor}px`,
-                height: 'auto',
-                opacity: 0.9,
-              }}
-            />
+            <p>Developed By</p>
+            <p
+              className="font-medium cursor-pointer no-underline"
+              onClick={() => window.open("http://www.airavatatechnologies.com", "_blank")}
+              style={{ textDecoration: 'none', color: '#B8986A' }}
+            >
+              AIRAVATA TECHNOLOGIES
+            </p>
           </div>
 
         </div>
