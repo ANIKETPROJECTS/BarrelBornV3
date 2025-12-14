@@ -83,29 +83,28 @@ export default function Welcome() {
           })
         }}
       >
-        {/* Content directly on background - dynamically scaled */}
+        {/* Content directly on background - dynamically scaled to fit viewport */}
         <div
-          className="flex flex-col items-center justify-center h-full px-4"
+          className="flex flex-col items-center justify-between h-full"
           style={{
-            padding: `${24 * scaleFactor}px ${16 * scaleFactor}px`,
-            gap: `${16 * scaleFactor}px`,
+            padding: `${12 * scaleFactor}px ${16 * scaleFactor}px`,
           }}
         >
 
-          {/* Logo Image */}
-          <div className="flex flex-col items-center w-full" style={{ marginBottom: `${-24 * scaleFactor}px`, marginTop: `${-16 * scaleFactor}px` }}>
+          {/* Logo Image - at top */}
+          <div className="flex flex-col items-center w-full">
             <img
               src={logoImage}
               alt="Barrelborn Dine & Draft"
               style={{
-                width: `${280 * scaleFactor}px`,
+                width: `${220 * scaleFactor}px`,
                 height: 'auto',
               }}
             />
           </div>
 
-          {/* Social Media Icons */}
-          <div className="flex" style={{ gap: `${12 * scaleFactor}px`, marginTop: `${-8 * scaleFactor}px` }}>
+          {/* Social Media Icons - closer to logo */}
+          <div className="flex" style={{ gap: `${12 * scaleFactor}px`, marginTop: `${-20 * scaleFactor}px` }}>
             <button
               onClick={() => handleSocialClick("https://www.instagram.com/mingschinesecuisine.in?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==")}
               className="border rounded-md flex items-center justify-center transition-opacity hover:opacity-80"
@@ -164,8 +163,8 @@ export default function Welcome() {
           {/* Rating Section */}
           <div className="text-center">
             <p
-              className="font-medium mb-2"
-              style={{ fontSize: `${14 * scaleFactor}px`, marginBottom: `${8 * scaleFactor}px`, color: '#dcd4c8' }}
+              className="font-medium"
+              style={{ fontSize: `${13 * scaleFactor}px`, marginBottom: `${4 * scaleFactor}px`, color: '#dcd4c8' }}
             >
               Click to Rate us on Google
             </p>
@@ -177,7 +176,7 @@ export default function Welcome() {
               {[1, 2, 3, 4, 5].map((star) => (
                 <Star
                   key={star}
-                  style={{ width: `${24 * scaleFactor}px`, height: `${24 * scaleFactor}px`, color: '#B8986A', fill: '#B8986A' }}
+                  style={{ width: `${20 * scaleFactor}px`, height: `${20 * scaleFactor}px`, color: '#B8986A', fill: '#B8986A' }}
                 />
               ))}
             </div>
@@ -188,21 +187,21 @@ export default function Welcome() {
             <div
               className="border-2 rounded-full inline-block"
               style={{
-                padding: `${4 * scaleFactor}px ${16 * scaleFactor}px`,
-                marginBottom: `${12 * scaleFactor}px`,
+                padding: `${3 * scaleFactor}px ${14 * scaleFactor}px`,
+                marginBottom: `${6 * scaleFactor}px`,
                 borderColor: '#B8986A',
               }}
             >
               <span
                 className="font-semibold"
-                style={{ fontSize: `${12 * scaleFactor}px`, color: '#dcd4c8' }}
+                style={{ fontSize: `${11 * scaleFactor}px`, color: '#dcd4c8' }}
               >
                 ADDRESS
               </span>
             </div>
             <div
               className="leading-tight"
-              style={{ fontSize: `${11 * scaleFactor}px`, color: '#E8DFD1', maxWidth: `${260 * scaleFactor}px` }}
+              style={{ fontSize: `${10 * scaleFactor}px`, color: '#E8DFD1', maxWidth: `${260 * scaleFactor}px` }}
             >
               <p>Shop No: 3, Madanlal Dhingra Rd,</p>
               <p>beside Satranj Wafers, Bhakti Mandir,</p>
@@ -215,50 +214,45 @@ export default function Welcome() {
             <div
               className="border-2 rounded-full inline-block"
               style={{
-                padding: `${4 * scaleFactor}px ${16 * scaleFactor}px`,
-                marginBottom: `${12 * scaleFactor}px`,
+                padding: `${3 * scaleFactor}px ${14 * scaleFactor}px`,
+                marginBottom: `${6 * scaleFactor}px`,
                 borderColor: '#B8986A',
               }}
             >
               <span
                 className="font-semibold"
-                style={{ fontSize: `${12 * scaleFactor}px`, color: '#dcd4c8' }}
+                style={{ fontSize: `${11 * scaleFactor}px`, color: '#dcd4c8' }}
               >
                 CONTACT
               </span>
             </div>
             <div
-              style={{ fontSize: `${11 * scaleFactor}px`, color: '#E8DFD1' }}
+              style={{ fontSize: `${10 * scaleFactor}px`, color: '#E8DFD1' }}
             >
               <p>+91 1234567890</p>
               <p>info@barrelborn.in</p>
             </div>
           </div>
 
-          {/* Website URL Section */}
-          <div className="text-center" style={{ marginTop: `${8 * scaleFactor}px` }}>
+          {/* Website URL and Developer Credit - grouped at bottom */}
+          <div className="text-center">
             <p
               className="cursor-pointer no-underline"
-              style={{ textDecoration: 'none', color: '#B8986A', fontSize: `${11 * scaleFactor}px` }}
+              style={{ textDecoration: 'none', color: '#B8986A', fontSize: `${10 * scaleFactor}px`, marginBottom: `${6 * scaleFactor}px` }}
               onClick={() => window.open("https://www.barrelborn.in", "_blank")}
             >
               www.barrelborn.in
             </p>
-          </div>
-
-          {/* Developer Credit */}
-          <div
-            className="text-center"
-            style={{ fontSize: `${10 * scaleFactor}px`, color: '#E8DFD1' }}
-          >
-            <p>Developed By</p>
-            <p
-              className="font-medium cursor-pointer no-underline"
-              onClick={() => window.open("http://www.airavatatechnologies.com", "_blank")}
-              style={{ textDecoration: 'none', color: '#B8986A' }}
-            >
-              AIRAVATA TECHNOLOGIES
-            </p>
+            <div style={{ fontSize: `${9 * scaleFactor}px`, color: '#E8DFD1' }}>
+              <p>Developed By</p>
+              <p
+                className="font-medium cursor-pointer no-underline"
+                onClick={() => window.open("http://www.airavatatechnologies.com", "_blank")}
+                style={{ textDecoration: 'none', color: '#B8986A' }}
+              >
+                AIRAVATA TECHNOLOGIES
+              </p>
+            </div>
           </div>
 
         </div>
