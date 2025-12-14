@@ -77,13 +77,13 @@ export default function Welcome() {
         <div
           className="flex flex-col items-center justify-center h-full px-4"
           style={{
-            padding: `${32 * scaleFactor}px ${16 * scaleFactor}px`,
-            gap: `${24 * scaleFactor}px`,
+            padding: `${24 * scaleFactor}px ${16 * scaleFactor}px`,
+            gap: `${16 * scaleFactor}px`,
           }}
         >
 
           {/* Logo Image */}
-          <div className="flex flex-col items-center w-full" style={{ marginBottom: `${-20 * scaleFactor}px` }}>
+          <div className="flex flex-col items-center w-full" style={{ marginBottom: `${-24 * scaleFactor}px`, marginTop: `${-16 * scaleFactor}px` }}>
             <img
               src={logoImage}
               alt="Barrelborn Dine & Draft"
@@ -95,7 +95,7 @@ export default function Welcome() {
           </div>
 
           {/* Social Media Icons */}
-          <div className="flex" style={{ gap: `${12 * scaleFactor}px` }}>
+          <div className="flex" style={{ gap: `${12 * scaleFactor}px`, marginTop: `${-8 * scaleFactor}px` }}>
             <button
               onClick={() => handleSocialClick("https://www.instagram.com/mingschinesecuisine.in?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==")}
               className="border rounded-md flex items-center justify-center transition-opacity hover:opacity-80"
@@ -143,11 +143,11 @@ export default function Welcome() {
               gap: `${8 * scaleFactor}px`,
               fontSize: `${14 * scaleFactor}px`,
               borderColor: '#B8986A',
-              color: '#B8986A',
+              color: '#dcd4c8',
               backgroundColor: 'transparent',
             }}
           >
-            <Utensils style={{ width: `${20 * scaleFactor}px`, height: `${20 * scaleFactor}px` }} />
+            <Utensils style={{ width: `${20 * scaleFactor}px`, height: `${20 * scaleFactor}px`, color: '#dcd4c8' }} />
             <span>EXPLORE OUR MENU</span>
           </button>
 
@@ -155,7 +155,7 @@ export default function Welcome() {
           <div className="text-center">
             <p
               className="font-medium mb-2"
-              style={{ fontSize: `${14 * scaleFactor}px`, marginBottom: `${8 * scaleFactor}px`, color: '#B8986A' }}
+              style={{ fontSize: `${14 * scaleFactor}px`, marginBottom: `${8 * scaleFactor}px`, color: '#dcd4c8' }}
             >
               Click to Rate us on Google
             </p>
@@ -180,21 +180,23 @@ export default function Welcome() {
               style={{
                 padding: `${4 * scaleFactor}px ${16 * scaleFactor}px`,
                 marginBottom: `${12 * scaleFactor}px`,
-                borderColor: '#E8DFD1',
+                borderColor: '#B8986A',
               }}
             >
               <span
                 className="font-semibold"
-                style={{ fontSize: `${12 * scaleFactor}px`, color: '#B8986A' }}
+                style={{ fontSize: `${12 * scaleFactor}px`, color: '#dcd4c8' }}
               >
                 ADDRESS
               </span>
             </div>
             <div
               className="leading-tight"
-              style={{ fontSize: `${11 * scaleFactor}px`, color: '#E8DFD1' }}
+              style={{ fontSize: `${11 * scaleFactor}px`, color: '#E8DFD1', maxWidth: `${260 * scaleFactor}px` }}
             >
-              <p>THANE, MAHARASHTRA</p>
+              <p>Shop No: 3, Madanlal Dhingra Rd,</p>
+              <p>beside Satranj Wafers, Bhakti Mandir,</p>
+              <p>Panch Pakhdi, Thane West</p>
             </div>
           </div>
 
@@ -205,27 +207,33 @@ export default function Welcome() {
               style={{
                 padding: `${4 * scaleFactor}px ${16 * scaleFactor}px`,
                 marginBottom: `${12 * scaleFactor}px`,
-                borderColor: '#E8DFD1',
+                borderColor: '#B8986A',
               }}
             >
               <span
                 className="font-semibold"
-                style={{ fontSize: `${12 * scaleFactor}px`, color: '#B8986A' }}
+                style={{ fontSize: `${12 * scaleFactor}px`, color: '#dcd4c8' }}
               >
                 CONTACT
               </span>
             </div>
             <div
-              style={{ fontSize: `${11 * scaleFactor}px`, gap: `${4 * scaleFactor}px`, color: '#E8DFD1' }}
+              style={{ fontSize: `${11 * scaleFactor}px`, color: '#E8DFD1' }}
             >
+              <p>+91 1234567890</p>
               <p>info@barrelborn.in</p>
-              <p
-                className="cursor-pointer no-underline"
-                style={{ textDecoration: 'none', color: '#B8986A' }}
-              >
-                www.barrelborn.in
-              </p>
             </div>
+          </div>
+
+          {/* Website URL Section */}
+          <div className="text-center" style={{ marginTop: `${8 * scaleFactor}px` }}>
+            <p
+              className="cursor-pointer no-underline"
+              style={{ textDecoration: 'none', color: '#B8986A', fontSize: `${11 * scaleFactor}px` }}
+              onClick={() => window.open("https://www.barrelborn.in", "_blank")}
+            >
+              www.barrelborn.in
+            </p>
           </div>
 
           {/* Developer Credit */}
