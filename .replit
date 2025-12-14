@@ -41,3 +41,8 @@ waitForPort = 5000
 
 [agent]
 expertMode = true
+
+[userenv]
+
+[userenv.shared]
+MONGODB_URI = "mongodb+srv://raneaniket23_db_user:TK7nJE9AbMKB28bm@barrelborn.aturqwy.mongodb.net/?appName=barrelborn"
