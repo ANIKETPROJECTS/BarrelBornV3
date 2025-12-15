@@ -71,7 +71,7 @@ export default function MenuLanding() {
               <img 
                 src={logoImg} 
                 alt="Barrel Born Logo" 
-                className="h-16 sm:h-20 md:h-24 w-auto object-contain"
+                className="h-24 sm:h-28 md:h-32 w-auto object-contain"
                 data-testid="img-logo"
               />
             </div>
