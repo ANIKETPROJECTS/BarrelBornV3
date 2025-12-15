@@ -16,7 +16,7 @@ import premiumFoodImg from "@assets/generated_images/premium_burger_dark_backgro
 import premiumBarImg from "@assets/stock_images/premium_whisky_cockt_68b3295e.jpg";
 import premiumDessertsImg from "@assets/generated_images/chocolate_dessert_dark_background.png";
 import premiumMocktailsImg from "@assets/stock_images/premium_colorful_moc_1a15dee9.jpg";
-import logoImg from "/images/logo.png";
+import logoImg from "@assets/Untitled_design_(20)_1765720426678.png";
 
 const promotionalImages = [
   { id: 1, src: restaurantInterior1, alt: "Elegant Restaurant Interior" },
