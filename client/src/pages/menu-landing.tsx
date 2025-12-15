@@ -12,9 +12,9 @@ import restaurantInterior3 from "@assets/stock_images/elegant_restaurant_i_46bc3
 import gourmetFood1 from "@assets/stock_images/gourmet_food_plating_4fa14995.jpg";
 import gourmetFood2 from "@assets/stock_images/gourmet_food_plating_6ae9981b.jpg";
 
-import premiumFoodImg from "@assets/stock_images/premium_gourmet_food_a20f6103.jpg";
+import premiumFoodImg from "@assets/generated_images/premium_burger_dark_background.png";
 import premiumBarImg from "@assets/stock_images/premium_whisky_cockt_68b3295e.jpg";
-import premiumDessertsImg from "@assets/stock_images/premium_chocolate_de_58e8f157.jpg";
+import premiumDessertsImg from "@assets/generated_images/chocolate_dessert_dark_background.png";
 import premiumMocktailsImg from "@assets/stock_images/premium_colorful_moc_1a15dee9.jpg";
 
 const promotionalImages = [
@@ -267,14 +267,26 @@ export default function MenuLanding() {
                 alt={category.displayLabel}
                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
               />
-              <div className="absolute inset-0 flex flex-col items-center justify-end text-white p-4 pb-6">
+              <div className="absolute inset-0 flex flex-col items-center justify-end p-4 pb-8">
                 <h3
-                  className="text-xl sm:text-2xl font-bold tracking-wide"
-                  style={{ fontFamily: "'Playfair Display', serif", color: "#DCD4C8", textShadow: "0 2px 4px rgba(0,0,0,0.5)" }}
+                  className="text-2xl sm:text-3xl md:text-4xl font-black tracking-wider uppercase"
+                  style={{ 
+                    fontFamily: "'Playfair Display', serif", 
+                    color: "#FFFFFF", 
+                    textShadow: "0 4px 12px rgba(0,0,0,0.8), 0 2px 4px rgba(0,0,0,0.9)",
+                    letterSpacing: "3px"
+                  }}
                 >
                   {category.displayLabel}
                 </h3>
-                <p className="text-xs sm:text-sm text-center mt-1" style={{ color: "#DCD4C8", opacity: 0.9, textShadow: "0 1px 2px rgba(0,0,0,0.5)" }}>
+                <p 
+                  className="text-xs sm:text-sm text-center mt-2 font-medium tracking-wide"
+                  style={{ 
+                    color: "#FFFFFF", 
+                    textShadow: "0 2px 8px rgba(0,0,0,0.8)",
+                    opacity: 0.95
+                  }}
+                >
                   {category.description}
                 </p>
               </div>
