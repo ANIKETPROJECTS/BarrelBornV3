@@ -35,7 +35,7 @@ export default function Welcome() {
       <div className="flex flex-col items-center w-full px-4 pt-0 pb-2">
 
         {/* Logo Image - big and at top, negative margin to pull up */}
-        <div className="flex flex-col items-center w-full -mt-6">
+        <div className="flex flex-col items-center w-full -mt-12">
           <img
             src={logoImage}
             alt="Barrelborn Dine & Draft"
