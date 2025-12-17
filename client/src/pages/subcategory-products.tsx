@@ -52,9 +52,9 @@ export default function SubcategoryProducts() {
   const [voiceSearchSupported, setVoiceSearchSupported] = useState(false);
 
   const itemsQuery = useQuery<MenuItem[]>({
-    queryKey: ["/api/menu-items/category", subcategoryId],
+    queryKey: ["/api/menu-items", subcategoryId],
     queryFn: async () => {
-      const response = await fetch(`/api/menu-items/category/${subcategoryId}`);
+      const response = await fetch(`/api/menu-items?category=${encodeURIComponent(subcategoryId)}`);
       if (!response.ok) throw new Error('Failed to fetch');
       return response.json();
     }

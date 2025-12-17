@@ -7,6 +7,15 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Menu items routes
   app.get("/api/menu-items", async (req, res) => {
     try {
+      // Check for category query param: ?category=nibbles
+      const categoryQuery = (req.query.category as string) || (req.params.category as string);
+      
+      if (categoryQuery) {
+        const items = await storage.getMenuItemsByCategory(categoryQuery);
+        return res.json(items);
+      }
+      
+      // No category param, return all items
       const items = await storage.getMenuItems();
       res.json(items);
     } catch (error) {

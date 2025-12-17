@@ -38,8 +38,8 @@ export default async function handler(req, res) {
     const client = await connectToDatabase();
     const db = client.db('barrelborn');
     
-    // Actual MongoDB collections from barrelborn database
-    const categories = [
+    // All MongoDB collections from barrelborn database
+    const allCollections = [
       'blended-whisky', 'tequila', 'biryani', 'pizza', 'liqueurs', 'cognac-brandy',
       'charcoal', 'thai-bowls', 'rum', 'sizzlers', 'breads', 'white-wines',
       'rose-wines', 'dessert-wines', 'soft-beverages', 'port-wine', 'soups',
@@ -49,18 +49,29 @@ export default async function handler(req, res) {
       'asian-mains', 'red-wines', 'curries', 'rice', 'sliders'
     ];
     
+    // Check for category query parameter: /api/menu-items?category=nibbles
+    const categoryParam = req.query.category;
+    
+    if (categoryParam) {
+      // Return items from specific category
+      const collection = db.collection(categoryParam);
+      const items = await collection.find({}).toArray();
+      console.log(`[API] Fetched ${items.length} items from category "${categoryParam}"`);
+      return res.status(200).json(items);
+    }
+    
+    // No category param, fetch all items from all collections
     const allMenuItems = [];
-    for (const category of categories) {
-      const collection = db.collection(category);
+    for (const cat of allCollections) {
+      const collection = db.collection(cat);
       const items = await collection.find({}).toArray();
       allMenuItems.push(...items);
     }
     
-    console.log(`Found ${allMenuItems.length} total menu items across all categories`);
-    
+    console.log(`[API] Found ${allMenuItems.length} total menu items across all categories`);
     res.status(200).json(allMenuItems);
   } catch (error) {
-    console.error('Error fetching menu items:', error);
+    console.error('[API] Error fetching menu items:', error);
     res.status(500).json({ 
       error: 'Failed to fetch menu items',
       message: error.message

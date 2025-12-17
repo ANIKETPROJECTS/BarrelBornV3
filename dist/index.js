@@ -506,6 +506,11 @@ var insertUserSchema = z.object({
 async function registerRoutes(app2) {
   app2.get("/api/menu-items", async (req, res) => {
     try {
+      const categoryQuery = req.query.category || req.params.category;
+      if (categoryQuery) {
+        const items2 = await storage.getMenuItemsByCategory(categoryQuery);
+        return res.json(items2);
+      }
       const items = await storage.getMenuItems();
       res.json(items);
     } catch (error) {
