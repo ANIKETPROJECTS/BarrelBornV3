@@ -51,9 +51,21 @@ export default function SubcategoryProducts() {
   const [speechRecognition, setSpeechRecognition] = useState<ISpeechRecognition | null>(null);
   const [voiceSearchSupported, setVoiceSearchSupported] = useState(false);
 
-  const { data: menuItems = [], isLoading } = useQuery<MenuItem[]>({
+  const itemsQuery = useQuery<MenuItem[]>({
     queryKey: ["/api/menu-items"],
   });
+  
+  const { data: menuItems = [], isLoading, error, isError } = itemsQuery;
+
+  useEffect(() => {
+    console.log("Menu Items Query State:", {
+      isLoading,
+      isError,
+      error: error?.message,
+      dataCount: menuItems.length,
+      data: menuItems
+    });
+  }, [menuItems, isLoading, isError, error]);
 
   useEffect(() => {
     if ("webkitSpeechRecognition" in window || "SpeechRecognition" in window) {

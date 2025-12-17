@@ -30,19 +30,34 @@ export const getQueryFn: <T>(options: {
   ({ on401: unauthorizedBehavior }) =>
   async ({ queryKey }) => {
     const url = queryKey.join("/") as string;
+    console.log(`[QueryClient] Fetching: ${url}`);
     try {
       const res = await fetch(url, {
         credentials: "include",
       });
 
+      console.log(`[QueryClient] Response status for ${url}: ${res.status}`);
+
       if (unauthorizedBehavior === "returnNull" && res.status === 401) {
+        console.log(`[QueryClient] Got 401, returning null`);
         return null;
       }
 
-      await throwIfResNotOk(res);
-      return await res.json();
+      if (!res.ok) {
+        const text = await res.text();
+        console.error(`[QueryClient] API Error for ${url}:`, {
+          status: res.status,
+          statusText: res.statusText,
+          body: text
+        });
+        throw new Error(`${res.status}: ${text}`);
+      }
+
+      const data = await res.json();
+      console.log(`[QueryClient] Successfully fetched ${url}:`, data);
+      return data;
     } catch (error) {
-      console.error(`Failed to fetch ${url}:`, error);
+      console.error(`[QueryClient] Failed to fetch ${url}:`, error);
       throw error;
     }
   };
