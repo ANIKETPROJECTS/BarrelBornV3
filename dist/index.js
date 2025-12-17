@@ -58,13 +58,51 @@ var MongoStorage = class {
     this.client = new MongoClient(connectionString2);
     this.db = this.client.db("barrelborn");
     this.categoryCollections = /* @__PURE__ */ new Map();
-    const categoryCollectionMapping = {};
-    this.categories.forEach((cat) => {
-      categoryCollectionMapping[cat] = cat;
-    });
+    const categoryCollectionMapping = {
+      "nibbles": "nibbles",
+      "titbits": "titbits",
+      "soups": "soups",
+      "salads": "salads",
+      "starters": "starters",
+      "charcoal": "charcoal",
+      "pasta": "pasta",
+      "pizza": "pizza",
+      "sliders": "sliders",
+      "entree": "entree",
+      "bao-dimsum": "bao-dimsum",
+      "curries": "curries",
+      "biryani": "biryani",
+      "rice": "rice",
+      "dals": "dals",
+      "breads": "breads",
+      "asian-mains": "asian-mains",
+      "thai-bowls": "thai-bowls",
+      "rice-noodles": "rice-noodles",
+      "sizzlers": "sizzlers",
+      "blended-whisky": "blended-whisky",
+      "blended-scotch-whisky": "blended-scotch-whisky",
+      "american-irish-whiskey": "american-irish-whiskey",
+      "single-malt-whisky": "single-malt-whisky",
+      "vodka": "vodka",
+      "gin": "gin",
+      "rum": "rum",
+      "tequila": "tequila",
+      "cognac-brandy": "cognac-brandy",
+      "liqueurs": "liqueurs",
+      "sparkling-wine": "sparkling-wine",
+      "white-wines": "white-wines",
+      "rose-wines": "rose-wines",
+      "red-wines": "red-wines",
+      "dessert-wines": "dessert-wines",
+      "port-wine": "port-wine",
+      "signature-mocktails": "signature-mocktails",
+      "soft-beverages": "soft-beverages"
+    };
     this.categories.forEach((category) => {
       const collectionName = categoryCollectionMapping[category];
-      this.categoryCollections.set(category, this.db.collection(collectionName));
+      if (collectionName) {
+        this.categoryCollections.set(category, this.db.collection(collectionName));
+      }
     });
     this.cartItemsCollection = this.db.collection("cartitems");
     this.usersCollection = this.db.collection("users");
@@ -72,7 +110,24 @@ var MongoStorage = class {
   }
   async connect() {
     await this.client.connect();
+    await this.listAllCollections();
     await this.ensureCollectionsExist();
+  }
+  async listAllCollections() {
+    try {
+      const existingCollections = await this.db.listCollections().toArray();
+      const existingNames = existingCollections.map((c) => c.name);
+      console.log("[MongoDB] All existing collections:", existingNames);
+      for (const collName of existingNames) {
+        if (!collName.startsWith("system.")) {
+          const collection = this.db.collection(collName);
+          const count = await collection.countDocuments();
+          console.log(`[MongoDB] Collection "${collName}": ${count} documents`);
+        }
+      }
+    } catch (error) {
+      console.error("[MongoDB] Error listing collections:", error);
+    }
   }
   async ensureCollectionsExist() {
     try {

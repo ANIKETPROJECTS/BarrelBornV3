@@ -51,26 +51,10 @@ export default function SubcategoryProducts() {
   const [speechRecognition, setSpeechRecognition] = useState<ISpeechRecognition | null>(null);
   const [voiceSearchSupported, setVoiceSearchSupported] = useState(false);
 
-  // Map subcategories to MongoDB collections that actually contain data
-  const collectionMap: Record<string, string> = {
-    'soups': 'soups', 'nibbles': 'soups', 'titbits': 'soups', 'salads': 'soups',
-    'starters': 'vegstarter', 'charcoal': 'charcoal', 'pasta': 'pasta',
-    'pizza': 'pizza', 'sliders': 'sliders', 'entree': 'entree',
-    'bao-dimsum': 'momos', 'curries': 'gravies', 'biryani': 'potrice',
-    'rice': 'rice', 'dals': 'gravies', 'breads': 'entree',
-    'asian-mains': 'noodle', 'thai-bowls': 'thai', 'rice-noodles': 'noodle',
-    'sizzlers': 'charcoal', 'desserts': 'desserts',
-    'blended-whisky': 'beverages', 'vodka': 'beverages', 'gin': 'beverages',
-    'sparkling-wine': 'beverages', 'signature-mocktails': 'beverages',
-    'soft-beverages': 'beverages',
-  };
-  
-  const mongoCollection = collectionMap[subcategoryId] || 'soups';
-  
   const itemsQuery = useQuery<MenuItem[]>({
-    queryKey: ["/api/menu-items/category", mongoCollection],
+    queryKey: ["/api/menu-items/category", subcategoryId],
     queryFn: async () => {
-      const response = await fetch(`/api/menu-items/category/${mongoCollection}`);
+      const response = await fetch(`/api/menu-items/category/${subcategoryId}`);
       if (!response.ok) throw new Error('Failed to fetch');
       return response.json();
     }

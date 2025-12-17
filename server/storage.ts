@@ -411,16 +411,53 @@ export class MongoStorage implements IStorage {
     this.db = this.client.db("barrelborn");
     this.categoryCollections = new Map();
 
-    // Initialize collections for each category with correct collection names
-    const categoryCollectionMapping: Record<string, string> = {};
-    this.categories.forEach(cat => {
-      categoryCollectionMapping[cat] = cat;
-    });
-
+    // Map frontend categories to actual MongoDB collection names (most map 1:1)
+    const categoryCollectionMapping: Record<string, string> = {
+      'nibbles': 'nibbles',
+      'titbits': 'titbits',
+      'soups': 'soups',
+      'salads': 'salads',
+      'starters': 'starters',
+      'charcoal': 'charcoal',
+      'pasta': 'pasta',
+      'pizza': 'pizza',
+      'sliders': 'sliders',
+      'entree': 'entree',
+      'bao-dimsum': 'bao-dimsum',
+      'curries': 'curries',
+      'biryani': 'biryani',
+      'rice': 'rice',
+      'dals': 'dals',
+      'breads': 'breads',
+      'asian-mains': 'asian-mains',
+      'thai-bowls': 'thai-bowls',
+      'rice-noodles': 'rice-noodles',
+      'sizzlers': 'sizzlers',
+      'blended-whisky': 'blended-whisky',
+      'blended-scotch-whisky': 'blended-scotch-whisky',
+      'american-irish-whiskey': 'american-irish-whiskey',
+      'single-malt-whisky': 'single-malt-whisky',
+      'vodka': 'vodka',
+      'gin': 'gin',
+      'rum': 'rum',
+      'tequila': 'tequila',
+      'cognac-brandy': 'cognac-brandy',
+      'liqueurs': 'liqueurs',
+      'sparkling-wine': 'sparkling-wine',
+      'white-wines': 'white-wines',
+      'rose-wines': 'rose-wines',
+      'red-wines': 'red-wines',
+      'dessert-wines': 'dessert-wines',
+      'port-wine': 'port-wine',
+      'signature-mocktails': 'signature-mocktails',
+      'soft-beverages': 'soft-beverages'
+    };
 
     this.categories.forEach(category => {
-      const collectionName = categoryCollectionMapping[category as keyof typeof categoryCollectionMapping];
-      this.categoryCollections.set(category, this.db.collection(collectionName));
+      const collectionName = categoryCollectionMapping[category];
+      if (collectionName) {
+        this.categoryCollections.set(category, this.db.collection(collectionName));
+      }
     });
 
     this.cartItemsCollection = this.db.collection("cartitems");
@@ -430,7 +467,27 @@ export class MongoStorage implements IStorage {
 
   async connect() {
     await this.client.connect();
+    await this.listAllCollections();
     await this.ensureCollectionsExist();
+  }
+
+  private async listAllCollections() {
+    try {
+      const existingCollections = await this.db.listCollections().toArray();
+      const existingNames = existingCollections.map(c => c.name);
+      console.log("[MongoDB] All existing collections:", existingNames);
+      
+      // Count documents in each collection
+      for (const collName of existingNames) {
+        if (!collName.startsWith('system.')) {
+          const collection = this.db.collection(collName);
+          const count = await collection.countDocuments();
+          console.log(`[MongoDB] Collection "${collName}": ${count} documents`);
+        }
+      }
+    } catch (error) {
+      console.error("[MongoDB] Error listing collections:", error);
+    }
   }
 
   private async ensureCollectionsExist() {
