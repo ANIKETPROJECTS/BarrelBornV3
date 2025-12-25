@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import barrelbornWelcomeAudio from "@assets/Barrelbornwelcome_1766651854689.mp3";
 
 // Global audio instance to prevent multiple setups
 let globalAudio: HTMLAudioElement | null = null;
@@ -24,6 +25,7 @@ export function useWelcomeAudio() {
     let interactionListenersAdded = false;
 
     const audioSources = [
+      barrelbornWelcomeAudio,
       '/Welcome.mp3',
       './Welcome.mp3', 
       '/assets/Welcome.mp3'
