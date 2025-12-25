@@ -292,26 +292,26 @@ export default function CategorySelection() {
       </header>
 
       <div className="container mx-auto px-4 py-8">
-        <h1
-          className="text-center text-2xl sm:text-3xl font-bold mb-8 tracking-wider"
-          style={{
-            fontFamily: "'Cormorant Garamond', serif",
-            color: "#C9A55C",
-            letterSpacing: "3px",
-          }}
-        >
-          {mainCategory.displayLabel}
-        </h1>
+        <div className="flex items-center justify-between gap-6 mb-8">
+          <h1
+            className="text-2xl sm:text-3xl font-bold tracking-wider flex-1"
+            style={{
+              fontFamily: "'Cormorant Garamond', serif",
+              color: "#C9A55C",
+              letterSpacing: "3px",
+            }}
+          >
+            {mainCategory.displayLabel}
+          </h1>
 
-        {categoryId === "food" && (
-          <div className="mb-6 flex justify-end">
+          {categoryId === "food" && (
             <div 
-              className="inline-flex rounded-full p-1"
-              style={{ backgroundColor: "rgba(201, 165, 92, 0.15)", border: "2px solid #C9A55C" }}
+              className="inline-flex rounded-full p-0.5"
+              style={{ backgroundColor: "rgba(201, 165, 92, 0.15)", border: "1.5px solid #C9A55C" }}
             >
               <button
                 onClick={() => handleFilterChange("all")}
-                className="px-5 py-2 text-sm font-medium rounded-full transition-all duration-200"
+                className="px-3 py-1 text-xs font-medium rounded-full transition-all duration-200"
                 data-testid="filter-all"
                 style={
                   vegFilter === "all"
@@ -323,7 +323,7 @@ export default function CategorySelection() {
               </button>
               <button
                 onClick={() => handleFilterChange("veg")}
-                className="px-5 py-2 text-sm font-medium rounded-full transition-all duration-200"
+                className="px-3 py-1 text-xs font-medium rounded-full transition-all duration-200"
                 data-testid="filter-veg"
                 style={
                   vegFilter === "veg"
@@ -335,7 +335,7 @@ export default function CategorySelection() {
               </button>
               <button
                 onClick={() => handleFilterChange("non-veg")}
-                className="px-5 py-2 text-sm font-medium rounded-full transition-all duration-200"
+                className="px-3 py-1 text-xs font-medium rounded-full transition-all duration-200"
                 data-testid="filter-non-veg"
                 style={
                   vegFilter === "non-veg"
@@ -346,8 +346,8 @@ export default function CategorySelection() {
                 Non-Veg
               </button>
             </div>
-          </div>
-        )}
+          )}
+        </div>
 
         <div className="grid grid-cols-2 gap-4 sm:gap-6">
           {subcategories.map((subcat, index) => (
