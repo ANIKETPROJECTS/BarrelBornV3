@@ -292,9 +292,9 @@ export default function CategorySelection() {
       </header>
 
       <div className="container mx-auto px-4 py-8">
-        <div className="flex items-center justify-between gap-6 mb-8">
+        <div className="flex items-center justify-center mb-8 relative">
           <h1
-            className="text-2xl sm:text-3xl font-bold tracking-wider flex-1"
+            className="text-2xl sm:text-3xl font-bold tracking-wider"
             style={{
               fontFamily: "'Cormorant Garamond', serif",
               color: "#C9A55C",
@@ -306,12 +306,12 @@ export default function CategorySelection() {
 
           {categoryId === "food" && (
             <div 
-              className="inline-flex rounded-full p-0.5"
+              className="absolute right-0 inline-flex rounded-full p-0.5 items-center gap-1"
               style={{ backgroundColor: "rgba(201, 165, 92, 0.15)", border: "1.5px solid #C9A55C" }}
             >
               <button
                 onClick={() => handleFilterChange("all")}
-                className="px-3 py-1 text-xs font-medium rounded-full transition-all duration-200"
+                className="px-2 py-1 text-xs font-medium rounded-full transition-all duration-200 flex-shrink-0"
                 data-testid="filter-all"
                 style={
                   vegFilter === "all"
@@ -323,28 +323,26 @@ export default function CategorySelection() {
               </button>
               <button
                 onClick={() => handleFilterChange("veg")}
-                className="px-3 py-1 text-xs font-medium rounded-full transition-all duration-200"
+                className="w-6 h-6 rounded-full transition-all duration-200 flex items-center justify-center flex-shrink-0"
                 data-testid="filter-veg"
+                title="Veg"
                 style={
                   vegFilter === "veg"
-                    ? { backgroundColor: "#C9A55C", color: "white" }
-                    : { color: "#C9A55C" }
+                    ? { backgroundColor: "#22C55E", border: "2px solid #C9A55C" }
+                    : { backgroundColor: "#22C55E", border: "1px solid rgba(201, 165, 92, 0.3)" }
                 }
-              >
-                Veg
-              </button>
+              />
               <button
                 onClick={() => handleFilterChange("non-veg")}
-                className="px-3 py-1 text-xs font-medium rounded-full transition-all duration-200"
+                className="w-6 h-6 rounded-full transition-all duration-200 flex items-center justify-center flex-shrink-0"
                 data-testid="filter-non-veg"
+                title="Non-Veg"
                 style={
                   vegFilter === "non-veg"
-                    ? { backgroundColor: "#C9A55C", color: "white" }
-                    : { color: "#C9A55C" }
+                    ? { backgroundColor: "#EF4444", border: "2px solid #C9A55C" }
+                    : { backgroundColor: "#EF4444", border: "1px solid rgba(201, 165, 92, 0.3)" }
                 }
-              >
-                Non-Veg
-              </button>
+              />
             </div>
           )}
         </div>
