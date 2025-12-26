@@ -402,7 +402,7 @@ export default function CategorySelection() {
                 whileTap={{ scale: 0.98 }}
                 onClick={() => handleSubcategoryClick(subcat.id)}
                 className="relative rounded-xl overflow-hidden group"
-                style={{ aspectRatio: "1/1.3" }}
+                style={{ aspectRatio: "1/1.2" }}
                 data-testid={`tile-${subcat.id}`}
               >
                 <img
@@ -411,14 +411,14 @@ export default function CategorySelection() {
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
-                <div className="absolute inset-0 flex flex-col items-center justify-end p-4 pb-8">
+                <div className="absolute inset-0 flex flex-col items-center justify-end p-2 pb-4 sm:pb-6">
                   <h3
-                    className="text-xl sm:text-2xl font-bold tracking-wider uppercase text-center"
+                    className="text-lg sm:text-xl font-bold tracking-wider uppercase text-center leading-tight"
                     style={{ 
                       fontFamily: "'Cormorant Garamond', serif", 
                       color: "#FFFFFF", 
                       textShadow: "0 4px 12px rgba(0,0,0,0.8), 0 2px 4px rgba(0,0,0,0.9)",
-                      letterSpacing: "2px"
+                      letterSpacing: "1.5px"
                     }}
                   >
                     {subcat.displayLabel}
