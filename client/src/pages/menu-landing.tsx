@@ -115,8 +115,8 @@ export default function MenuLanding() {
         />
       </header>
 
-      <div className="container mx-auto px-3 sm:px-4 py-4">
-        <div className="relative h-56 sm:h-64 md:h-72 rounded-xl overflow-hidden mb-6">
+      <div className="container mx-auto px-3 sm:px-4 py-2">
+        <div className="relative h-44 sm:h-52 md:h-60 rounded-xl overflow-hidden mb-4">
           {promotionalImages.map((image, index) => (
             <motion.div
               key={image.id}
@@ -147,7 +147,7 @@ export default function MenuLanding() {
           </div>
         </div>
 
-        <div className="grid grid-cols-2 gap-3 sm:gap-4">
+        <div className="grid grid-cols-2 gap-3 sm:gap-4 pb-4">
           {mainCategories.map((category, index) => (
             <motion.button
               key={category.id}
@@ -158,7 +158,7 @@ export default function MenuLanding() {
               whileTap={{ scale: 0.98 }}
               onClick={() => handleCategoryClick(category.id)}
               className="relative rounded-lg overflow-hidden group"
-              style={{ aspectRatio: "1/1.1" }}
+              style={{ aspectRatio: "1/0.85" }}
               data-testid={`tile-${category.id}`}
             >
               <img
@@ -167,15 +167,15 @@ export default function MenuLanding() {
                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-              <div className="absolute inset-0 flex flex-col items-center justify-end p-2 pb-4">
+              <div className="absolute inset-0 flex flex-col items-center justify-end p-2 pb-2">
                 <h3
-                  className="text-lg sm:text-xl md:text-2xl font-bold tracking-wider uppercase text-center"
+                  className="text-base sm:text-lg md:text-xl font-bold tracking-wider uppercase text-center"
                   style={{
                     fontFamily: "'Playfair Display', serif",
                     color: "#FFFFFF",
                     textShadow:
                       "0 2px 8px rgba(0,0,0,0.8)",
-                    letterSpacing: "1px",
+                    letterSpacing: "0.5px",
                   }}
                 >
                   {category.displayLabel}
