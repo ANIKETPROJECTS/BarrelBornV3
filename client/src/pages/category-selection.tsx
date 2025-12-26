@@ -1,11 +1,14 @@
 import { motion } from "framer-motion";
-import { ArrowLeft, Menu as MenuIcon, X, Phone, Clock, MapPin, Search, Mic, MicOff } from "lucide-react";
+import { ArrowLeft, Menu as MenuIcon, X, Phone, Clock, MapPin, Search, Mic, MicOff, Loader2 } from "lucide-react";
 import { FaInstagram } from "react-icons/fa";
 import { useLocation, useParams } from "wouter";
 import { useState, useEffect, useMemo } from "react";
+import { useQuery } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import ProductCard from "@/components/product-card";
 import { getMainCategory, mainCategories } from "@/lib/menu-categories";
+import type { MenuItem } from "@shared/schema";
 
 interface ISpeechRecognitionEvent {
   results: SpeechRecognitionResultList;
@@ -130,14 +133,25 @@ export default function CategorySelection() {
   const mainCategory = getMainCategory(categoryId);
   const subcategories = mainCategory?.subcategories || [];
 
-  const filteredSubcategories = useMemo(() => {
+  const { data: allMenuItems = [], isLoading: isLoadingItems } = useQuery<MenuItem[]>({
+    queryKey: ["/api/menu-items"],
+    enabled: categoryId === "food"
+  });
+
+  const filteredItems = useMemo(() => {
     if (categoryId !== "food" || !foodSearchQuery.trim()) {
-      return subcategories;
+      return [];
     }
-    return subcategories.filter(subcat =>
-      subcat.displayLabel.toLowerCase().includes(foodSearchQuery.toLowerCase())
+    const query = foodSearchQuery.toLowerCase();
+    return allMenuItems.filter(item => 
+      item.name.toLowerCase().includes(query) || 
+      item.description.toLowerCase().includes(query)
     );
-  }, [subcategories, foodSearchQuery, categoryId]);
+  }, [allMenuItems, foodSearchQuery, categoryId]);
+
+  const filteredSubcategories = useMemo(() => {
+    return subcategories;
+  }, [subcategories]);
 
   useEffect(() => {
     if ("webkitSpeechRecognition" in window || "SpeechRecognition" in window) {
@@ -389,51 +403,65 @@ export default function CategorySelection() {
         )}
 
         <div className="grid grid-cols-2 gap-4 sm:gap-6">
-          {filteredSubcategories.length === 0 && categoryId === "food" && foodSearchQuery.trim() && (
-            <div className="col-span-2 flex flex-col items-center justify-center min-h-[200px] text-center">
-              <Search className="h-12 w-12 text-gray-500 mb-4" />
-              <h3 className="text-lg font-semibold text-gray-300 mb-2" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
-                No categories found
-              </h3>
-              <p className="text-sm text-gray-500" style={{ fontFamily: "'Lato', sans-serif" }}>
-                No results for "{foodSearchQuery}"
-              </p>
-            </div>
-          )}
-          {filteredSubcategories.map((subcat, index) => (
-            <motion.button
-              key={subcat.id}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.1 }}
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-              onClick={() => handleSubcategoryClick(subcat.id)}
-              className="relative rounded-xl overflow-hidden group"
-              style={{ aspectRatio: "1/1.3" }}
-              data-testid={`tile-${subcat.id}`}
-            >
-              <img
-                src={subcategoryImages[subcat.id] || signatureMocktailsImg}
-                alt={subcat.displayLabel}
-                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
-              <div className="absolute inset-0 flex flex-col items-center justify-end p-4 pb-8">
-                <h3
-                  className="text-xl sm:text-2xl font-bold tracking-wider uppercase text-center"
-                  style={{ 
-                    fontFamily: "'Cormorant Garamond', serif", 
-                    color: "#FFFFFF", 
-                    textShadow: "0 4px 12px rgba(0,0,0,0.8), 0 2px 4px rgba(0,0,0,0.9)",
-                    letterSpacing: "2px"
-                  }}
-                >
-                  {subcat.displayLabel}
+          {categoryId === "food" && foodSearchQuery.trim() ? (
+            filteredItems.length === 0 ? (
+              <div className="col-span-2 flex flex-col items-center justify-center min-h-[200px] text-center">
+                <Search className="h-12 w-12 text-gray-500 mb-4" />
+                <h3 className="text-lg font-semibold text-gray-300 mb-2" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
+                  No items found
                 </h3>
+                <p className="text-sm text-gray-500" style={{ fontFamily: "'Lato', sans-serif" }}>
+                  No results for "{foodSearchQuery}"
+                </p>
               </div>
-            </motion.button>
-          ))}
+            ) : (
+              filteredItems.map((item, index) => (
+                <motion.div
+                  key={item._id?.toString() || index}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: index * 0.05 }}
+                >
+                  <ProductCard item={item} />
+                </motion.div>
+              ))
+            )
+          ) : (
+            filteredSubcategories.map((subcat, index) => (
+              <motion.button
+                key={subcat.id}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1 }}
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                onClick={() => handleSubcategoryClick(subcat.id)}
+                className="relative rounded-xl overflow-hidden group"
+                style={{ aspectRatio: "1/1.3" }}
+                data-testid={`tile-${subcat.id}`}
+              >
+                <img
+                  src={subcategoryImages[subcat.id] || signatureMocktailsImg}
+                  alt={subcat.displayLabel}
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+                <div className="absolute inset-0 flex flex-col items-center justify-end p-4 pb-8">
+                  <h3
+                    className="text-xl sm:text-2xl font-bold tracking-wider uppercase text-center"
+                    style={{ 
+                      fontFamily: "'Cormorant Garamond', serif", 
+                      color: "#FFFFFF", 
+                      textShadow: "0 4px 12px rgba(0,0,0,0.8), 0 2px 4px rgba(0,0,0,0.9)",
+                      letterSpacing: "2px"
+                    }}
+                  >
+                    {subcat.displayLabel}
+                  </h3>
+                </div>
+              </motion.button>
+            ))
+          )}
         </div>
       </div>
     </div>
