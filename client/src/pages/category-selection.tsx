@@ -336,7 +336,7 @@ export default function CategorySelection() {
                     <Phone className="h-5 w-5 text-gray-600" />
                     <div>
                       <p className="font-semibold text-gray-800" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
-                        Contact Us
+                        +91 72086 17766
                       </p>
                       <p className="text-sm text-gray-600" style={{ fontFamily: "'Lato', sans-serif" }}>
                         For reservations & orders
