@@ -401,7 +401,15 @@ export class MongoStorage implements IStorage {
     "dessert-wines",
     "port-wine",
     "signature-mocktails",
-    "soft-beverages"
+    "soft-beverages",
+    "craft-beers-on-tap",
+    "draught-beer",
+    "pint-beers",
+    "classic-cocktails",
+    "signature-cocktails",
+    "wine-cocktails",
+    "sangria",
+    "signature-shots"
   ];
 
 
@@ -450,7 +458,15 @@ export class MongoStorage implements IStorage {
       'dessert-wines': 'dessert-wines',
       'port-wine': 'port-wine',
       'signature-mocktails': 'signature-mocktails',
-      'soft-beverages': 'soft-beverages'
+      'soft-beverages': 'soft-beverages',
+      'craft-beers-on-tap': 'craft-beers-on-tap',
+      'draught-beer': 'draught-beer',
+      'pint-beers': 'pint-beers',
+      'classic-cocktails': 'classic-cocktails',
+      'signature-cocktails': 'signature-cocktails',
+      'wine-cocktails': 'wine-cocktails',
+      'sangria': 'sangria',
+      'signature-shots': 'signature-shots'
     };
 
     this.categories.forEach(category => {

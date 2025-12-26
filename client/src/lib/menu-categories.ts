@@ -85,13 +85,23 @@ export const mainCategories: MainCategory[] = [
     id: "crafted-beer",
     displayLabel: "CRAFTED BEER",
     description: "Premium brewed beers",
-    subcategories: [], // Add subcategories if needed later
+    subcategories: [
+      { id: "craft-beers-on-tap", displayLabel: "Craft Beers On Tap", dbCategory: "craft-beers-on-tap" },
+      { id: "draught-beer", displayLabel: "Draught Beer", dbCategory: "draught-beer" },
+      { id: "pint-beers", displayLabel: "Pint Beers", dbCategory: "pint-beers" },
+    ],
   },
   {
     id: "cocktails",
     displayLabel: "COCKTAILS",
     description: "Expertly mixed drinks",
-    subcategories: [], // Add subcategories if needed later
+    subcategories: [
+      { id: "classic-cocktails", displayLabel: "Classic Cocktails", dbCategory: "classic-cocktails" },
+      { id: "signature-cocktails", displayLabel: "Signature Cocktails", dbCategory: "signature-cocktails" },
+      { id: "wine-cocktails", displayLabel: "Wine Cocktails", dbCategory: "wine-cocktails" },
+      { id: "sangria", displayLabel: "Sangria", dbCategory: "sangria" },
+      { id: "signature-shots", displayLabel: "Signature Shots", dbCategory: "signature-shots" },
+    ],
   },
   {
     id: "bar",
