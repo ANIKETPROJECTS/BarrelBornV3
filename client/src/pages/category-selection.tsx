@@ -1,9 +1,10 @@
 import { motion } from "framer-motion";
-import { ArrowLeft, Menu as MenuIcon, X, Phone, Clock, MapPin } from "lucide-react";
+import { ArrowLeft, Menu as MenuIcon, X, Phone, Clock, MapPin, Search } from "lucide-react";
 import { FaInstagram } from "react-icons/fa";
 import { useLocation, useParams } from "wouter";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import { getMainCategory, mainCategories } from "@/lib/menu-categories";
 
 import logoImg from "@assets/Untitled_design_(20)_1765720426678.png";
@@ -94,33 +95,13 @@ export default function CategorySelection() {
   const params = useParams<{ category: string }>();
   const categoryId = params.category || "mocktails";
   const [showHamburgerMenu, setShowHamburgerMenu] = useState(false);
-  const [vegFilter, setVegFilter] = useState<"all" | "veg" | "non-veg">(() => {
-    if (categoryId === "food") {
-      try {
-        const saved = localStorage.getItem("foodVegFilter");
-        return (saved as "all" | "veg" | "non-veg") || "all";
-      } catch {
-        return "all";
-      }
-    }
-    return "all";
-  });
+  const [foodSearchQuery, setFoodSearchQuery] = useState("");
 
   const mainCategory = getMainCategory(categoryId);
   const subcategories = mainCategory?.subcategories || [];
 
   const handleSubcategoryClick = (subcategoryId: string) => {
-    const filterParam = vegFilter !== "all" ? `?filter=${vegFilter}` : "";
-    setLocation(`/menu/${categoryId}/${subcategoryId}${filterParam}`);
-  };
-
-  const handleFilterChange = (newFilter: "all" | "veg" | "non-veg") => {
-    setVegFilter(newFilter);
-    try {
-      localStorage.setItem("foodVegFilter", newFilter);
-    } catch {
-      // localStorage might not be available in some environments
-    }
+    setLocation(`/menu/${categoryId}/${subcategoryId}`);
   };
 
   const handleCategoryClick = (catId: string) => {
@@ -292,65 +273,34 @@ export default function CategorySelection() {
       </header>
 
       <div className="container mx-auto px-4 py-8">
-        <div className="flex items-center justify-center mb-8 relative">
-          <h1
-            className="text-2xl sm:text-3xl font-bold tracking-wider"
-            style={{
-              fontFamily: "'Cormorant Garamond', serif",
-              color: "#C9A55C",
-              letterSpacing: "3px",
-            }}
-          >
-            {mainCategory.displayLabel}
-          </h1>
+        <h1
+          className="text-2xl sm:text-3xl font-bold tracking-wider text-center mb-4"
+          style={{
+            fontFamily: "'Cormorant Garamond', serif",
+            color: "#C9A55C",
+            letterSpacing: "3px",
+          }}
+        >
+          {mainCategory.displayLabel}
+        </h1>
 
-          {categoryId === "food" && (
-            <div 
-              className="absolute right-0 inline-flex rounded-full p-0.5 items-center gap-0"
-              style={{
-                backgroundColor: vegFilter === "all" ? "rgba(255, 255, 255, 0.1)" : vegFilter === "veg" ? "rgba(34, 197, 94, 0.1)" : "rgba(239, 68, 68, 0.1)",
-                border: `1px solid ${vegFilter === "all" ? "#ffffff" : vegFilter === "veg" ? "#22C55E" : "#EF4444"}`
+        {categoryId === "food" && (
+          <div className="relative mb-6 max-w-md mx-auto">
+            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+            <Input
+              type="text"
+              placeholder="Search food items..."
+              value={foodSearchQuery}
+              onChange={(e) => setFoodSearchQuery(e.target.value)}
+              className="pl-10 h-10 rounded-full border-2 text-white placeholder:text-white/60 focus-visible:ring-2 focus-visible:ring-[#C9A55C]/50"
+              style={{ 
+                borderColor: '#C9A55C', 
+                backgroundColor: 'transparent'
               }}
-            >
-              <button
-                onClick={() => handleFilterChange("all")}
-                className="px-2 py-1 text-xs font-medium rounded-full transition-all duration-200 flex-shrink-0"
-                data-testid="filter-all"
-                style={
-                  vegFilter === "all"
-                    ? { backgroundColor: "white", color: "black", fontSize: "12px", lineHeight: "1.2" }
-                    : { color: "#C9A55C", fontSize: "12px", lineHeight: "1.2" }
-                }
-              >
-                All
-              </button>
-              <button
-                onClick={() => handleFilterChange("veg")}
-                className="px-2 py-1 text-xs font-medium rounded-full transition-all duration-200 flex-shrink-0"
-                data-testid="filter-veg"
-                style={
-                  vegFilter === "veg"
-                    ? { backgroundColor: "#22C55E", color: "white", fontSize: "12px", lineHeight: "1.2" }
-                    : { color: "#C9A55C", fontSize: "12px", lineHeight: "1.2" }
-                }
-              >
-                Veg
-              </button>
-              <button
-                onClick={() => handleFilterChange("non-veg")}
-                className="px-2 py-1 text-xs font-medium rounded-full transition-all duration-200 flex-shrink-0"
-                data-testid="filter-non-veg"
-                style={
-                  vegFilter === "non-veg"
-                    ? { backgroundColor: "#EF4444", color: "white", fontSize: "12px", lineHeight: "1.2" }
-                    : { color: "#C9A55C", fontSize: "12px", lineHeight: "1.2" }
-                }
-              >
-                Non-Veg
-              </button>
-            </div>
-          )}
-        </div>
+              data-testid="input-food-search"
+            />
+          </div>
+        )}
 
         <div className="grid grid-cols-2 gap-4 sm:gap-6">
           {subcategories.map((subcat, index) => (
