@@ -6,11 +6,11 @@ import { useLocation } from "wouter";
 import { Button } from "@/components/ui/button";
 import { mainCategories } from "@/lib/menu-categories";
 
-import restaurantInterior1 from "@assets/stock_images/elegant_restaurant_i_e8a94033.jpg";
-import restaurantInterior3 from "@assets/stock_images/elegant_restaurant_i_46bc3b6c.jpg";
-import newCarouselImg1 from "@assets/image_1765867084602.png";
-import newCarouselImg2 from "@assets/image_1765867378776.png";
-import newCarouselImg3 from "@assets/image_1765867524235.png";
+import carouselImg1 from "@assets/5_1766732327395.JPG";
+import carouselImg2 from "@assets/1_1766732327396.JPG";
+import carouselImg3 from "@assets/2_1766732327396.JPG";
+import carouselImg4 from "@assets/3_1766732327397.JPG";
+import carouselImg5 from "@assets/4_1766732327397.JPG";
 
 import premiumFoodImg from "@assets/image_1765866040643.png";
 import premiumBarImg from "@assets/stock_images/premium_whisky_cockt_68b3295e.jpg";
@@ -19,11 +19,11 @@ import premiumMocktailsImg from "@assets/stock_images/premium_colorful_moc_1a15d
 import logoImg from "@assets/Untitled_design_(20)_1765720426678.png";
 
 const promotionalImages = [
-  { id: 1, src: restaurantInterior1, alt: "Elegant Restaurant Interior" },
-  { id: 2, src: newCarouselImg1, alt: "Restaurant Ambiance" },
-  { id: 3, src: restaurantInterior3, alt: "Fine Dining Area" },
-  { id: 4, src: newCarouselImg2, alt: "Gourmet Dishes" },
-  { id: 5, src: newCarouselImg3, alt: "Delicious Food Spread" },
+  { id: 1, src: carouselImg1, alt: "Restaurant Interior" },
+  { id: 2, src: carouselImg2, alt: "Bar & Dining Area" },
+  { id: 3, src: carouselImg3, alt: "Modern Ambiance" },
+  { id: 4, src: carouselImg4, alt: "Contemporary Dining" },
+  { id: 5, src: carouselImg5, alt: "Elegant Seating" },
 ];
 
 const categoryImages: Record<string, string> = {
