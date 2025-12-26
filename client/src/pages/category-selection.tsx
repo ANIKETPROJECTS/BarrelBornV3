@@ -285,14 +285,14 @@ export default function CategorySelection() {
         </h1>
 
         {categoryId === "food" && (
-          <div className="relative mb-6 max-w-md mx-auto">
+          <div className="relative mb-6">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
             <Input
               type="text"
               placeholder="Search food items..."
               value={foodSearchQuery}
               onChange={(e) => setFoodSearchQuery(e.target.value)}
-              className="pl-10 h-10 rounded-full border-2 text-white placeholder:text-white/60 focus-visible:ring-2 focus-visible:ring-[#C9A55C]/50"
+              className="pl-10 pr-12 h-10 rounded-full border-2 text-white placeholder:text-white/60 focus-visible:ring-2 focus-visible:ring-[#C9A55C]/50"
               style={{ 
                 borderColor: '#C9A55C', 
                 backgroundColor: 'transparent'

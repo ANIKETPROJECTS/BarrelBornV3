@@ -264,7 +264,7 @@ export default function SubcategoryProducts() {
               variant="ghost"
               size="icon"
               onClick={isListening ? undefined : startVoiceSearch}
-              className="absolute right-1 top-1/2 transform -translate-y-1/2 h-9 w-9"
+              className="absolute right-1 top-1/2 transform -translate-y-1/2 h-9 w-9 hover:bg-transparent"
               data-testid="button-voice-search"
             >
               {isListening ? (
