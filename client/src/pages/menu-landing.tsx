@@ -1,6 +1,13 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { ArrowLeft, Menu as MenuIcon, X, Phone, Clock, MapPin } from "lucide-react";
+import {
+  ArrowLeft,
+  Menu as MenuIcon,
+  X,
+  Phone,
+  Clock,
+  MapPin,
+} from "lucide-react";
 import { FaInstagram } from "react-icons/fa";
 import { useLocation } from "wouter";
 import { Button } from "@/components/ui/button";
@@ -40,7 +47,9 @@ export default function MenuLanding() {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentImageIndex((prevIndex) => (prevIndex + 1) % promotionalImages.length);
+      setCurrentImageIndex(
+        (prevIndex) => (prevIndex + 1) % promotionalImages.length,
+      );
     }, 4000);
     return () => clearInterval(interval);
   }, []);
@@ -51,7 +60,10 @@ export default function MenuLanding() {
 
   return (
     <div className="min-h-screen" style={{ backgroundColor: "#151515" }}>
-      <header className="sticky top-0 z-30 elegant-shadow" style={{ backgroundColor: "#151515" }}>
+      <header
+        className="sticky top-0 z-30 elegant-shadow"
+        style={{ backgroundColor: "#151515" }}
+      >
         <div className="container mx-auto px-2 sm:px-4 py-3 sm:py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-2 sm:space-x-3 min-w-0 flex-1">
@@ -68,9 +80,9 @@ export default function MenuLanding() {
             </div>
 
             <div className="absolute left-1/2 transform -translate-x-1/2">
-              <img 
-                src={logoImg} 
-                alt="Barrel Born Logo" 
+              <img
+                src={logoImg}
+                alt="Barrel Born Logo"
                 className="h-32 sm:h-36 md:h-40 w-auto object-contain"
                 data-testid="img-logo"
               />
@@ -107,7 +119,10 @@ export default function MenuLanding() {
               <div className="flex items-center justify-between mb-4 sm:mb-6">
                 <h2
                   className="text-lg sm:text-xl md:text-2xl font-bold"
-                  style={{ color: "var(--elegant-gold)", fontFamily: "Open Sans, sans-serif" }}
+                  style={{
+                    color: "var(--elegant-gold)",
+                    fontFamily: "Open Sans, sans-serif",
+                  }}
                 >
                   Menu Categories
                 </h2>
@@ -134,7 +149,10 @@ export default function MenuLanding() {
                       setShowHamburgerMenu(false);
                     }}
                     className="p-4 rounded-lg text-sm font-semibold transition-all duration-200 border-2 border-gray-200 bg-white hover:border-yellow-300"
-                    style={{ color: "var(--elegant-black)", fontFamily: "Open Sans, sans-serif" }}
+                    style={{
+                      color: "var(--elegant-black)",
+                      fontFamily: "Open Sans, sans-serif",
+                    }}
                     data-testid={`button-category-${category.id}`}
                   >
                     {category.displayLabel}
@@ -145,7 +163,10 @@ export default function MenuLanding() {
               <div className="bg-gray-50 rounded-lg p-4 sm:p-6">
                 <h3
                   className="text-lg sm:text-xl font-bold mb-3 sm:mb-4"
-                  style={{ color: "var(--elegant-gold)", fontFamily: "Open Sans, sans-serif" }}
+                  style={{
+                    color: "var(--elegant-gold)",
+                    fontFamily: "Open Sans, sans-serif",
+                  }}
                 >
                   Restaurant Information
                 </h3>
@@ -153,10 +174,16 @@ export default function MenuLanding() {
                   <div className="flex items-center space-x-3">
                     <MapPin className="h-5 w-5 text-gray-600" />
                     <div>
-                      <p className="font-semibold text-gray-800" style={{ fontFamily: "Open Sans, sans-serif" }}>
+                      <p
+                        className="font-semibold text-gray-800"
+                        style={{ fontFamily: "Open Sans, sans-serif" }}
+                      >
                         Barrel Born
                       </p>
-                      <p className="text-sm text-gray-600" style={{ fontFamily: "Open Sans, sans-serif" }}>
+                      <p
+                        className="text-sm text-gray-600"
+                        style={{ fontFamily: "Open Sans, sans-serif" }}
+                      >
                         Thane, Maharashtra
                       </p>
                     </div>
@@ -164,10 +191,16 @@ export default function MenuLanding() {
                   <div className="flex items-center space-x-3">
                     <Phone className="h-5 w-5 text-gray-600" />
                     <div>
-                      <p className="font-semibold text-gray-800" style={{ fontFamily: "Open Sans, sans-serif" }}>
+                      <p
+                        className="font-semibold text-gray-800"
+                        style={{ fontFamily: "Open Sans, sans-serif" }}
+                      >
                         Contact Us
                       </p>
-                      <p className="text-sm text-gray-600" style={{ fontFamily: "Open Sans, sans-serif" }}>
+                      <p
+                        className="text-sm text-gray-600"
+                        style={{ fontFamily: "Open Sans, sans-serif" }}
+                      >
                         For reservations & orders
                       </p>
                     </div>
@@ -175,10 +208,16 @@ export default function MenuLanding() {
                   <div className="flex items-center space-x-3">
                     <Clock className="h-5 w-5 text-gray-600" />
                     <div>
-                      <p className="font-semibold text-gray-800" style={{ fontFamily: "Open Sans, sans-serif" }}>
-                        11:00 AM - 11:00 PM
+                      <p
+                        className="font-semibold text-gray-800"
+                        style={{ fontFamily: "Open Sans, sans-serif" }}
+                      >
+                        11:00 AM - 11:30 PM
                       </p>
-                      <p className="text-sm text-gray-600" style={{ fontFamily: "Open Sans, sans-serif" }}>
+                      <p
+                        className="text-sm text-gray-600"
+                        style={{ fontFamily: "Open Sans, sans-serif" }}
+                      >
                         Open all days
                       </p>
                     </div>
@@ -187,13 +226,22 @@ export default function MenuLanding() {
                     <FaInstagram className="h-5 w-5 text-gray-600" />
                     <div>
                       <button
-                        onClick={() => window.open("https://www.instagram.com/barrelborn_?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==", "_blank", "noopener,noreferrer")}
+                        onClick={() =>
+                          window.open(
+                            "https://www.instagram.com/barrelborn_?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==",
+                            "_blank",
+                            "noopener,noreferrer",
+                          )
+                        }
                         className="font-semibold text-blue-600 hover:underline"
                         style={{ fontFamily: "Open Sans, sans-serif" }}
                       >
                         @barrelborn_
                       </button>
-                      <p className="text-sm text-gray-600" style={{ fontFamily: "Open Sans, sans-serif" }}>
+                      <p
+                        className="text-sm text-gray-600"
+                        style={{ fontFamily: "Open Sans, sans-serif" }}
+                      >
                         Follow us for updates
                       </p>
                     </div>
@@ -259,11 +307,12 @@ export default function MenuLanding() {
               <div className="absolute inset-0 flex flex-col items-center justify-start p-4 pt-8">
                 <h3
                   className="text-2xl sm:text-3xl md:text-4xl font-black tracking-wider uppercase"
-                  style={{ 
-                    fontFamily: "'Playfair Display', serif", 
-                    color: "#FFFFFF", 
-                    textShadow: "0 4px 12px rgba(0,0,0,0.8), 0 2px 4px rgba(0,0,0,0.9)",
-                    letterSpacing: "3px"
+                  style={{
+                    fontFamily: "'Playfair Display', serif",
+                    color: "#FFFFFF",
+                    textShadow:
+                      "0 4px 12px rgba(0,0,0,0.8), 0 2px 4px rgba(0,0,0,0.9)",
+                    letterSpacing: "3px",
                   }}
                 >
                   {category.displayLabel}
