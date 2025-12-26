@@ -85,6 +85,10 @@ export default function SubcategoryProducts() {
   const { data: menuItems = [], isLoading, error, isError } = itemsQuery;
 
   useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [categoryId, subcategoryId]);
+
+  useEffect(() => {
     console.log("Menu Items Query State:", {
       isLoading,
       isError,

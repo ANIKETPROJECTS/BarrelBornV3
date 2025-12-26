@@ -140,6 +140,10 @@ export default function CategorySelection() {
     enabled: categoryId === "food" || categoryId === "bar"
   });
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [categoryId, foodSearchQuery]);
+
   const filteredItems = useMemo(() => {
     if ((categoryId !== "food" && categoryId !== "bar") || !foodSearchQuery.trim()) {
       return [];
