@@ -108,6 +108,12 @@ export default function HamburgerMenu({
                   Contact Us
                 </p>
                 <p
+                  className="text-sm text-blue-600 hover:underline font-medium"
+                  style={{ fontFamily: "Open Sans, sans-serif" }}
+                >
+                  +91 72086 17766
+                </p>
+                <p
                   className="text-sm text-gray-600"
                   style={{ fontFamily: "Open Sans, sans-serif" }}
                 >
