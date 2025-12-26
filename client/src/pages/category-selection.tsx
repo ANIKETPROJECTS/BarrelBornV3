@@ -1,11 +1,38 @@
 import { motion } from "framer-motion";
-import { ArrowLeft, Menu as MenuIcon, X, Phone, Clock, MapPin, Search } from "lucide-react";
+import { ArrowLeft, Menu as MenuIcon, X, Phone, Clock, MapPin, Search, Mic, MicOff } from "lucide-react";
 import { FaInstagram } from "react-icons/fa";
 import { useLocation, useParams } from "wouter";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { getMainCategory, mainCategories } from "@/lib/menu-categories";
+
+interface ISpeechRecognitionEvent {
+  results: SpeechRecognitionResultList;
+}
+
+interface ISpeechRecognitionErrorEvent {
+  error: string;
+}
+
+interface ISpeechRecognition extends EventTarget {
+  continuous: boolean;
+  interimResults: boolean;
+  lang: string;
+  start(): void;
+  stop(): void;
+  onstart: ((event: Event) => void) | null;
+  onresult: ((event: ISpeechRecognitionEvent) => void) | null;
+  onerror: ((event: ISpeechRecognitionErrorEvent) => void) | null;
+  onend: ((event: Event) => void) | null;
+}
+
+declare global {
+  interface Window {
+    SpeechRecognition: new () => ISpeechRecognition;
+    webkitSpeechRecognition: new () => ISpeechRecognition;
+  }
+}
 
 import logoImg from "@assets/Untitled_design_(20)_1765720426678.png";
 import signatureMocktailsImg from "@assets/image_1765865243299.png";
@@ -96,9 +123,44 @@ export default function CategorySelection() {
   const categoryId = params.category || "mocktails";
   const [showHamburgerMenu, setShowHamburgerMenu] = useState(false);
   const [foodSearchQuery, setFoodSearchQuery] = useState("");
+  const [isListening, setIsListening] = useState(false);
+  const [speechRecognition, setSpeechRecognition] = useState<ISpeechRecognition | null>(null);
+  const [voiceSearchSupported, setVoiceSearchSupported] = useState(false);
 
   const mainCategory = getMainCategory(categoryId);
   const subcategories = mainCategory?.subcategories || [];
+
+  useEffect(() => {
+    if ("webkitSpeechRecognition" in window || "SpeechRecognition" in window) {
+      const SpeechRecognitionAPI = window.SpeechRecognition || window.webkitSpeechRecognition;
+      const recognition = new SpeechRecognitionAPI();
+      recognition.continuous = false;
+      recognition.interimResults = false;
+      recognition.lang = "en-US";
+
+      recognition.onstart = () => setIsListening(true);
+      recognition.onresult = (event: ISpeechRecognitionEvent) => {
+        const transcript = event.results[0][0].transcript;
+        setFoodSearchQuery(transcript);
+        setIsListening(false);
+      };
+      recognition.onerror = () => setIsListening(false);
+      recognition.onend = () => setIsListening(false);
+
+      setSpeechRecognition(recognition);
+      setVoiceSearchSupported(true);
+    }
+  }, []);
+
+  const startVoiceSearch = () => {
+    if (speechRecognition && voiceSearchSupported) {
+      try {
+        speechRecognition.start();
+      } catch (error) {
+        console.error("Error starting voice recognition:", error);
+      }
+    }
+  };
 
   const handleSubcategoryClick = (subcategoryId: string) => {
     setLocation(`/menu/${categoryId}/${subcategoryId}`);
@@ -299,6 +361,21 @@ export default function CategorySelection() {
               }}
               data-testid="input-food-search"
             />
+            {voiceSearchSupported && (
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={isListening ? undefined : startVoiceSearch}
+                className="absolute right-1 top-1/2 transform -translate-y-1/2 h-9 w-9 hover:bg-transparent"
+                data-testid="button-food-voice-search"
+              >
+                {isListening ? (
+                  <MicOff className="h-4 w-4 text-red-500 animate-pulse" />
+                ) : (
+                  <Mic className="h-4 w-4 text-white" />
+                )}
+              </Button>
+            )}
           </div>
         )}
 
