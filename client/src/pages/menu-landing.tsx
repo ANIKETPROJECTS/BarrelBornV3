@@ -139,7 +139,7 @@ export default function MenuLanding() {
               </div>
 
               <div className="grid grid-cols-2 gap-3 mb-6">
-                {mainCategories.map((category) => (
+                {mainCategories.map((category, index) => (
                   <motion.button
                     key={category.id}
                     whileHover={{ scale: 1.02 }}
@@ -155,7 +155,7 @@ export default function MenuLanding() {
                     }}
                     data-testid={`button-category-${category.id}`}
                   >
-                    {category.displayLabel}
+                    {index + 1}. {category.displayLabel}
                   </motion.button>
                 ))}
               </div>

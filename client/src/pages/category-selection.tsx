@@ -278,7 +278,7 @@ export default function CategorySelection() {
               <div className="flex items-center justify-between mb-4 sm:mb-6">
                 <h2
                   className="text-lg sm:text-xl md:text-2xl font-bold"
-                  style={{ color: "var(--elegant-gold)", fontFamily: "'Cormorant Garamond', serif" }}
+                  style={{ color: "var(--elegant-gold)", fontFamily: "Open Sans, sans-serif" }}
                 >
                   Menu Categories
                 </h2>
@@ -295,7 +295,7 @@ export default function CategorySelection() {
               </div>
 
               <div className="grid grid-cols-2 gap-3 mb-6">
-                {mainCategories.map((category) => (
+                {mainCategories.map((category, index) => (
                   <motion.button
                     key={category.id}
                     whileHover={{ scale: 1.02 }}
@@ -305,10 +305,10 @@ export default function CategorySelection() {
                       setShowHamburgerMenu(false);
                     }}
                     className="p-4 rounded-lg text-sm font-semibold transition-all duration-200 border-2 border-gray-200 bg-white hover:border-yellow-300"
-                    style={{ color: "var(--elegant-black)", fontFamily: "'Cormorant Garamond', serif" }}
+                    style={{ color: "var(--elegant-black)", fontFamily: "Open Sans, sans-serif" }}
                     data-testid={`button-category-${category.id}`}
                   >
-                    {category.displayLabel}
+                    {index + 1}. {category.displayLabel}
                   </motion.button>
                 ))}
               </div>
@@ -316,7 +316,7 @@ export default function CategorySelection() {
               <div className="bg-gray-50 rounded-lg p-4 sm:p-6">
                 <h3
                   className="text-lg sm:text-xl font-bold mb-3 sm:mb-4"
-                  style={{ color: "var(--elegant-gold)", fontFamily: "'Cormorant Garamond', serif" }}
+                  style={{ color: "var(--elegant-gold)", fontFamily: "Open Sans, sans-serif" }}
                 >
                   Restaurant Information
                 </h3>
