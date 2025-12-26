@@ -376,9 +376,9 @@ export default function CategorySelection() {
         )}
       </header>
 
-      <div className="container mx-auto px-4 py-8">
+      <div className="container mx-auto px-4 py-4">
         <h1
-          className="text-2xl sm:text-3xl font-bold tracking-wider text-center mb-4"
+          className="text-2xl sm:text-3xl font-bold tracking-wider text-center mb-2"
           style={{
             fontFamily: "'Cormorant Garamond', serif",
             color: "#C9A55C",
