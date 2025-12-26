@@ -85,7 +85,7 @@ export default function Welcome() {
           </p>
           <div
             className="flex justify-center cursor-pointer gap-1"
-            onClick={() => window.open("https://share.google/4M6YuMlZc0hDBswBu")}
+            onClick={() => window.open("https://www.google.com/search?q=barrelborn+%7C+dine+and+draft+%7C+thane&sca_esv=579435e9b1f4aa6c&sxsrf=AE3TifMKJiOcA_0foKemaeqGQQg9dgk-cQ%3A1766738800477&ei=cEtOaYbrHLLl2roP_OrSUA&oq=barrel&gs_lp=Egxnd3Mtd2l6LXNlcnAiBmJhcnJlbCoCCAAyBBAjGCcyBBAjGCcyChAjGIAEGCcYigUyCxAAGIAEGJECGIoFMhAQABiABBixAxhDGIMBGIoFMgsQABiABBiRAhiKBTIQEAAYgAQYsQMYQxiDARiKBTIQEC4YgAQY0QMYQxjHARiKBTIIEAAYgAQYsQMyChAAGIAEGBQYhwJIxxtQxwNYwg5wAngAkAEAmAHPAaAB2gmqAQUwLjYuMbgBAcgBAPgBAZgCCKAC_QioAhDCAgoQABiwAxjWBBhHwgIHECMYJxjqAsICDRAuGMcBGCcY6gIYrwHCAhcQABiABBiRAhi0AhjnBhiKBRjqAtgBAcICCxAAGIAEGLEDGIMBwgIFEAAYgATCAg4QLhiABBixAxjRAxjHAcICERAAGIAEGLEDGIMBGIoFGI0GwgIFEC4YgATCAgoQABiABBhDGIoFwgIOEAAYgAQYkQIYsQMYigXCAhcQLhiABBiRAhixAxjRAxjHARjJAxiKBcICDRAuGIAEGLEDGEMYigXCAhAQLhiABBixAxhDGIMBGIoFwgIQEAAYgAQYsQMYQxjJAxiKBZgDCfEFwClWDApzulmIBgGQBgi6BgYIARABGAGSBwUyLjUuMaAHtl-yBwUwLjUuMbgH6QjCBwUyLTcuMcgHKYAIAA&sclient=gws-wiz-serp#lrd=0x3be7b9b24c556745:0x394d83a5b37880b2,3,,,,", "_blank")}
           >
             {[1, 2, 3, 4, 5].map((star) => (
               <Star key={star} className="w-8 h-8" style={{ color: '#B8986A', fill: '#B8986A' }} />
@@ -117,7 +117,7 @@ export default function Welcome() {
             <span className="font-semibold text-sm" style={{ color: '#dcd4c8' }}>CONTACT</span>
           </div>
           <div className="text-sm" style={{ color: '#E8DFD1' }}>
-            <p>+91 1234567890</p>
+            <p>+91 72086 17766</p>
             <p>info@barrelborn.in</p>
           </div>
         </div>
