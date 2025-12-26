@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { ArrowLeft, Menu as MenuIcon, X, Phone, Clock, MapPin, Search, Mic, MicOff } from "lucide-react";
 import { FaInstagram } from "react-icons/fa";
 import { useLocation, useParams } from "wouter";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { getMainCategory, mainCategories } from "@/lib/menu-categories";
@@ -129,6 +129,15 @@ export default function CategorySelection() {
 
   const mainCategory = getMainCategory(categoryId);
   const subcategories = mainCategory?.subcategories || [];
+
+  const filteredSubcategories = useMemo(() => {
+    if (categoryId !== "food" || !foodSearchQuery.trim()) {
+      return subcategories;
+    }
+    return subcategories.filter(subcat =>
+      subcat.displayLabel.toLowerCase().includes(foodSearchQuery.toLowerCase())
+    );
+  }, [subcategories, foodSearchQuery, categoryId]);
 
   useEffect(() => {
     if ("webkitSpeechRecognition" in window || "SpeechRecognition" in window) {
@@ -380,7 +389,18 @@ export default function CategorySelection() {
         )}
 
         <div className="grid grid-cols-2 gap-4 sm:gap-6">
-          {subcategories.map((subcat, index) => (
+          {filteredSubcategories.length === 0 && categoryId === "food" && foodSearchQuery.trim() && (
+            <div className="col-span-2 flex flex-col items-center justify-center min-h-[200px] text-center">
+              <Search className="h-12 w-12 text-gray-500 mb-4" />
+              <h3 className="text-lg font-semibold text-gray-300 mb-2" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
+                No categories found
+              </h3>
+              <p className="text-sm text-gray-500" style={{ fontFamily: "'Lato', sans-serif" }}>
+                No results for "{foodSearchQuery}"
+              </p>
+            </div>
+          )}
+          {filteredSubcategories.map((subcat, index) => (
             <motion.button
               key={subcat.id}
               initial={{ opacity: 0, y: 20 }}
