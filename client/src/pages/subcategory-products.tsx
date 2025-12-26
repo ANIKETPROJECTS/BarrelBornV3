@@ -200,7 +200,7 @@ export default function SubcategoryProducts() {
               </h1>
 
               {categoryId === "food" && (
-                <div className="absolute -right-2 flex items-center">
+                <div className="absolute -right-4 flex items-center">
                   {/* Desktop Toggle */}
                   <div 
                     className="hidden sm:inline-flex rounded-full p-0.5 items-center gap-0"
@@ -291,8 +291,8 @@ export default function SubcategoryProducts() {
         </div>
       </header>
 
-      <div className="container mx-auto px-3 sm:px-4 py-4">
-        <div className="relative mb-6">
+      <div className="container mx-auto px-3 sm:px-4 py-2 sm:py-4">
+        <div className="relative mb-3 sm:mb-6">
           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-white" />
           <Input
             type="text"
