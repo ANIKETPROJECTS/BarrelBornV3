@@ -59,7 +59,7 @@ export default function ProductCard({ item }: ProductCardProps) {
             lineHeight: "1.5"
           }}
         >
-          {typeof item.price === "string" ? item.price : `₹${item.price}`}
+          {typeof item.price === "string" && item.price.includes("|") ? item.price : `₹${item.price}`}
         </span>
       </div>
     </div>
