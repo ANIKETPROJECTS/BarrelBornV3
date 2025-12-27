@@ -422,7 +422,6 @@ export default function CategorySelection() {
                     setFailedImages(prev => new Set(prev).add(subcat.id));
                   }}
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
                 <div className="absolute inset-0 flex flex-col items-center justify-end p-2 pb-3 sm:pb-4">
                   <h3
                     className="text-base sm:text-lg font-bold tracking-wider uppercase text-center leading-tight"
