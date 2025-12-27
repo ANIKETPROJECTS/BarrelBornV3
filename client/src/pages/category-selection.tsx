@@ -173,7 +173,7 @@ export default function CategorySelection() {
                         (vegFilter === "veg" && item.isVeg) || 
                         (vegFilter === "non-veg" && !item.isVeg);
 
-      return isCorrectCategory && matchesSearch && matchesVeg;
+      return isCorrectCategory && matchesSearch && matchesVeg && item.isAvailable;
     });
   }, [allMenuItems, foodSearchQuery, categoryId, vegFilter]);
 

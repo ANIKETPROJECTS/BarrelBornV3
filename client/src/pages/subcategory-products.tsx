@@ -139,6 +139,9 @@ export default function SubcategoryProducts() {
     
     let filtered = menuItems;
     
+    // Apply availability filter
+    filtered = filtered.filter(item => item.isAvailable);
+    
     // Apply veg filter
     if (vegFilter === "veg") {
       filtered = filtered.filter(item => item.isVeg);

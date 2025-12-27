@@ -173,6 +173,8 @@ export default function CategoryDetail() {
 
   const filteredItems = useMemo(() => {
     return menuItems.filter((item) => {
+      if (!item.isAvailable) return false;
+      
       if (searchQuery.trim()) {
         const matchesSearch = 
           item.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
