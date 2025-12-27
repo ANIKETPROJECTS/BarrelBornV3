@@ -50,7 +50,7 @@ import vodkaImg from "@assets/Vodka_1766842473904.jpeg";
 import ginImg from "@assets/Gin_1766842473903.jpeg";
 import rumImg from "@assets/Rum_1766842473903.jpeg";
 import tequilaImg from "@assets/Tequila_1766842473903.jpeg";
-import cognacBrandyImg from "@assets/image_1765864219488.png";
+import cognacBrandyImg from "@assets/conac_and_brandy_1766849551597.jpeg";
 import liqueursImg from "@assets/Liqueurs_1766842473904.jpeg";
 import sparklingWineImg from "@assets/image_1765864313974.png";
 import whiteWinesImg from "@assets/image_1765864338087.png";
