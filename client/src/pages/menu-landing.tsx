@@ -42,6 +42,15 @@ const categoryImages: Record<string, string> = {
   mocktails: premiumMocktailsImg,
 };
 
+const wineCategories = new Set([
+  "sparkling-wine",
+  "white-wines",
+  "rose-wines",
+  "red-wines",
+  "dessert-wines",
+  "port-wine"
+]);
+
 export default function MenuLanding() {
   const [, setLocation] = useLocation();
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
