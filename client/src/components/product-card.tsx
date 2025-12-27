@@ -9,7 +9,11 @@ interface ProductCardProps {
 
 export default function ProductCard({ item }: ProductCardProps) {
   const [imgError, setImgError] = useState(false);
-  const imageUrl = imgError || !item.image || item.image.includes("example.com") ? fallbackImg : item.image;
+  const isBrokenImage = imgError || !item.image || 
+    item.image.includes("example.com") || 
+    item.image.includes("via.placeholder.com") ||
+    item.image.includes("placeholder.com");
+  const imageUrl = isBrokenImage ? fallbackImg : item.image;
 
   return (
     <div className="flex flex-col overflow-hidden" style={{ borderRadius: 0 }}>
