@@ -45,7 +45,7 @@ import fallbackImg from "@assets/coming_soon_imagev2_1766811809828.jpg";
 import blendedWhiskyImg from "@assets/image_1765863859085.png";
 import blendedScotchWhiskyImg from "@assets/image_1765863885349.png";
 import americanIrishWhiskeyImg from "@assets/image_1765863999733.png";
-import singleMaltWhiskyImg from "@assets/image_1765864037279.png";
+import singleMaltWhiskyImg from "@assets/image_1766842777903.png";
 import vodkaImg from "@assets/Vodka_1766842473904.jpeg";
 import ginImg from "@assets/Gin_1766842473903.jpeg";
 import rumImg from "@assets/Rum_1766842473903.jpeg";
