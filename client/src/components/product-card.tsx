@@ -1,7 +1,7 @@
 import { useState } from "react";
 import type { MenuItem } from "@shared/schema";
 
-import fallbackImg from "@assets/Coming_soon_image_1766811558594.webp";
+import fallbackImg from "@assets/coming_soon_imagev2_1766811809828.jpg";
 
 interface ProductCardProps {
   item: MenuItem;
