@@ -1,7 +1,7 @@
 import { useState } from "react";
 import type { MenuItem } from "@shared/schema";
 
-import dummyProductImg from "@assets/generated_images/signature_mocktails_drinks.png";
+import fallbackImg from "@assets/Coming_soon_image_1766811558594.webp";
 
 interface ProductCardProps {
   item: MenuItem;
@@ -9,7 +9,7 @@ interface ProductCardProps {
 
 export default function ProductCard({ item }: ProductCardProps) {
   const [imgError, setImgError] = useState(false);
-  const imageUrl = imgError || !item.image || item.image.includes("example.com") ? dummyProductImg : item.image;
+  const imageUrl = imgError || !item.image || item.image.includes("example.com") ? fallbackImg : item.image;
 
   return (
     <div className="flex flex-col overflow-hidden" style={{ borderRadius: 0 }}>

@@ -1,11 +1,16 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
 import type { MenuItem } from "@shared/schema";
+import fallbackImg from "@assets/Coming_soon_image_1766811558594.webp";
 
 interface DishCardProps {
   item: MenuItem;
 }
 
 export default function DishCard({ item }: DishCardProps) {
+  const [imgError, setImgError] = useState(false);
+  const imageUrl = imgError || !item.image || item.image.includes("example.com") ? fallbackImg : item.image;
+
   return (
     <motion.div
       whileHover={{ y: -2, scale: 1.01 }}
@@ -15,9 +20,10 @@ export default function DishCard({ item }: DishCardProps) {
         {/* Image Section */}
         <div className="relative aspect-[4/3] overflow-hidden">
           <img
-            src={item.image}
+            src={imageUrl}
             alt={item.name}
             className="w-full h-full object-cover"
+            onError={() => setImgError(true)}
           />
           <div
             className={`absolute top-3 right-3 w-5 h-5 rounded-full border-2 border-white shadow-sm ${
