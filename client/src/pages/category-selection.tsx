@@ -80,6 +80,10 @@ import thaiBowlsImg from "@assets/image_1765862959084.png";
 import riceNoodlesImg from "@assets/image_1765862986138.png";
 import sizzlersImg from "@assets/image_1765863042831.png";
 
+import pintBeerImg from "@assets/pint_beer_1766834179092.png";
+import craftBeerOnTapImg from "@assets/Craftbeerontap_1766834179093.png";
+import draughtBeerImg from "@assets/Draught_beer-min_1766834686357.png";
+
 const subcategoryImages: Record<string, string> = {
   "signature-mocktails": signatureMocktailsImg,
   "soft-beverages": softBeveragesImg,
@@ -119,6 +123,9 @@ const subcategoryImages: Record<string, string> = {
   "thai-bowls": thaiBowlsImg,
   "rice-noodles": riceNoodlesImg,
   sizzlers: sizzlersImg,
+  "pint-beers": pintBeerImg,
+  "craft-beers-on-tap": craftBeerOnTapImg,
+  "draught-beer": draughtBeerImg,
 };
 
 export default function CategorySelection() {
