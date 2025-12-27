@@ -40,6 +40,7 @@ declare global {
 import logoImg from "@assets/Untitled_design_(20)_1765720426678.png";
 import signatureMocktailsImg from "@assets/image_1765865243299.png";
 import softBeveragesImg from "@assets/image_1765865174044.png";
+import fallbackImg from "@assets/coming_soon_imagev2_1766811809828.jpg";
 
 import blendedWhiskyImg from "@assets/image_1765863859085.png";
 import blendedScotchWhiskyImg from "@assets/image_1765863885349.png";
@@ -129,6 +130,7 @@ export default function CategorySelection() {
   const [isListening, setIsListening] = useState(false);
   const [speechRecognition, setSpeechRecognition] = useState<ISpeechRecognition | null>(null);
   const [voiceSearchSupported, setVoiceSearchSupported] = useState(false);
+  const [failedImages, setFailedImages] = useState<Set<string>>(new Set());
 
   const mainCategory = getMainCategory(categoryId);
   const subcategories = mainCategory?.subcategories || [];
@@ -406,9 +408,12 @@ export default function CategorySelection() {
                 data-testid={`tile-${subcat.id}`}
               >
                 <img
-                  src={subcategoryImages[subcat.id] || signatureMocktailsImg}
+                  src={failedImages.has(subcat.id) ? fallbackImg : (subcategoryImages[subcat.id] || signatureMocktailsImg)}
                   alt={subcat.displayLabel}
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  onError={() => {
+                    setFailedImages(prev => new Set(prev).add(subcat.id));
+                  }}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
                 <div className="absolute inset-0 flex flex-col items-center justify-end p-2 pb-3 sm:pb-4">

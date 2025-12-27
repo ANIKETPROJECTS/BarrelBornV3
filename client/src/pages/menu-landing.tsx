@@ -23,6 +23,7 @@ import premiumMocktailsImg from "@assets/stock_images/premium_colorful_moc_1a15d
 import cocktailsImg from "@assets/COCKTAILS_1766751289781.jpg";
 import craftedBeerImg from "@assets/CRAFTED_BEER_1766750491358.jpg";
 import logoImg from "@assets/Untitled_design_(20)_1765720426678.png";
+import fallbackImg from "@assets/coming_soon_imagev2_1766811809828.jpg";
 
 const promotionalImages = [
   { id: 1, src: carouselImg1, alt: "Restaurant Interior" },
@@ -45,6 +46,7 @@ export default function MenuLanding() {
   const [, setLocation] = useLocation();
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [showHamburgerMenu, setShowHamburgerMenu] = useState(false);
+  const [failedImages, setFailedImages] = useState<Set<string>>(new Set());
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -162,9 +164,12 @@ export default function MenuLanding() {
               data-testid={`tile-${category.id}`}
             >
               <img
-                src={categoryImages[category.id]}
+                src={failedImages.has(category.id) ? fallbackImg : categoryImages[category.id]}
                 alt={category.displayLabel}
                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                onError={() => {
+                  setFailedImages(prev => new Set(prev).add(category.id));
+                }}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
               <div className="absolute inset-0 flex flex-col items-center justify-end p-2 pb-3">

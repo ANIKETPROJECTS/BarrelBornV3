@@ -48,6 +48,7 @@ import dessertWinesImg from "@assets/image_1765864417149.png";
 import portWineImg from "@assets/image_1765864441224.png";
 import signatureMocktailsImg from "@assets/image_1765865243299.png";
 import softBeveragesImg from "@assets/image_1765865174044.png";
+import fallbackImg from "@assets/coming_soon_imagev2_1766811809828.jpg";
 
 interface ISpeechRecognitionEvent {
   results: SpeechRecognitionResultList;
@@ -134,6 +135,7 @@ export default function CategoryDetail() {
   const [isListening, setIsListening] = useState(false);
   const [speechRecognition, setSpeechRecognition] = useState<ISpeechRecognition | null>(null);
   const [voiceSearchSupported, setVoiceSearchSupported] = useState(false);
+  const [failedImages, setFailedImages] = useState<Set<string>>(new Set());
   
   const scrollContainerRef = useRef<HTMLDivElement>(null);
 
@@ -307,9 +309,12 @@ export default function CategoryDetail() {
               >
                 <div className="w-14 h-14 rounded-lg overflow-hidden mb-1">
                   <img
-                    src={subcategoryImages[subcat.id] || nibblesImg}
+                    src={failedImages.has(subcat.id) ? fallbackImg : (subcategoryImages[subcat.id] || nibblesImg)}
                     alt={subcat.displayLabel}
                     className="w-full h-full object-cover"
+                    onError={() => {
+                      setFailedImages(prev => new Set(prev).add(subcat.id));
+                    }}
                   />
                 </div>
                 <span
